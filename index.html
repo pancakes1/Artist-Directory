@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+	<title>Artist Directory Project</title>
+	<link rel="stylesheet" href="styles.css">
+	<script language="JavaScript" type="text/javascript" src="script.js" defer ></script>
+
+</head>
+
+<body>
+
+<div id="mainBox" class="center">
+	<div class="topLeft"><b>Artist Directory</b></div>
+	<form action="action_page.php">
+		<input type="text" name="search" class="searchBar">
+		<button style="display:inline-block" type="submit"><i class="fa fa-search"></i></button>
+		<a id="add_artist_button" onclick="addArtistClicked()">Add Artist</a>
+	</form>
+</div>
+
+<div id="add_artist_box">
+	<div class = "border_topless input_container center">
+		<div class ="input_flex"> 
+			<input type="text" id="artistName" name="artistName" placeholder="Artist Name">
+			<input type="text" id="abtArtist" name="abtArtist" placeholder="About Artist">
+			<input type="text" id="imgURL" name="imgURL" placeholder="Image URL">
+		<a id="add_button" class="input_flex" onclick ="addClicked()">Add</a>
+		</div>
+	</div>
+</div>
+
+<div id = "display_container" class="border_topless">
+	<div id="artistBox">
+	<a id="delButton" class='deleteButtton'></a>
+	<!--	TEST <div class="clearfix">
+			<img class="URLimg"  src="img.jpg" alt="Morty">
+			<div id="descript" class="description">
+				<div id='displayedArtistName'>Morty</div>
+				<p>wubba wubba</p>
+				<a id ="delButton" class="deleteButton" onclick ='deleteButtonClick()'>Delete</a>
+			</div>	
+
+		</div>  -->
+	</div>
+</div>
+
+</body>
+</html>
+

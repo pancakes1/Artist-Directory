@@ -6,35 +6,34 @@ const addArtistClicked = () => {
 	let y = document.getElementById('add_artist_box');
 	if (y.style.display == "none"){
 		y.style.display = "block";
-	}
-	else{ 
+	} else{ 
 		x.style.display = "none";
 	}
 }
 
-const savedArtist = (artistId, artistName, artistAbt, artistImg, deleteBtn, main, dataTag) =>{
-	
+const savedArtist = (artist) =>{
+		
 		let card = document.createElement('div');	
 		card.classList.add('clearfix');
-		card.id = artistId;
+		card.id = artist.id;
 		
 		let artImg = document.createElement('img');
 		artImg.classList.add('URLimg');
-		artImg.src = artistImg;
+		artImg.src = artist.img;
 		artImg.alt = 'artist';
 		
 		let artName = document.createElement('div');
 		artName.id ='displayedArtistName';
-		var textName =document.createTextNode(artistName);
+		var textName =document.createTextNode(artist.name);
 		artName.appendChild(textName);
 		
 		let artAbt = document.createElement('p');
 		artAbt.classList.add('description');
-		var textAbt = document.createTextNode(artistAbt);
+		var textAbt = document.createTextNode(artist.abt);
 		artAbt.appendChild(textAbt);
 		
 		let del = document.createElement('a');
-		del.id = deleteBtn;
+		del.id = artist.del;
 		del.classList.add('deleteButton');
 		var textDel = document.createTextNode('Delete');
 		del.appendChild(textDel);
@@ -47,31 +46,32 @@ const savedArtist = (artistId, artistName, artistAbt, artistImg, deleteBtn, main
 		
 		card.appendChild(artImg);
 		card.appendChild(descr);
-		main.appendChild(card);
+		artist.main.appendChild(card);
 	
-		document.getElementById(artistId).addEventListener('click', function(){
+		document.getElementById(artist.id).addEventListener('click', function(){
 		var data = localStorage.getItem('dataKey')
 		if (data){
 			data = JSON.parse(data);
-			data.splice(dataTag,1);
+			data.splice(artist.dataTag,1);
 		}
 		localStorage.setItem('dataKey', JSON.stringify(data));
-		document.getElementById(artistId).remove();
+		document.getElementById(artist.id).remove();
 		
 	});
 }
 
 const addClicked = () =>{
-	let x = document.getElementById('artistBox');
+	let main = document.getElementById('artistBox');
 	let name = document.getElementById('artistName').value;
 	let about = document.getElementById('abtArtist').value;
 	let img = document.getElementById('imgURL').value;
 	let delBtn = document.getElementById('delButton').value;
-	const start = Date.now();
-	let dataTag = '' 
-	savedArtist(start, name, about, img, delBtn, x, dataTag);
+	const id = Date.now();
+	let dataTag = ''
+	let artist = {id, name, about, img, delBtn, main, dataTag};
+	savedArtist(artist);
 	
-	var data = {'name':name, 'about': about, 'img':img, "id":start}
+	var data = {'name':name, 'about': about, 'img':img, "id":id}
 	var dataList= window.localStorage.getItem("dataKey");
 
 	if (dataList == null){
@@ -96,20 +96,21 @@ console.log(JSON.parse(retrieveData));*/
 window.addEventListener('load',reload);	
 function reload() {
 	var dataList= window.localStorage.getItem("dataKey");
-	let x = document.getElementById('artistBox');
-	let delBtn = document.getElementById('delButton').value;
+	let main = document.getElementById('artistBox');
+	let del = document.getElementById('delButton').value;
 	if (dataList == null){
 		dataList = [];
 	}else{
 		dataList = JSON.parse(dataList);
 	}
 	for (var i = 0; i<dataList.length; i++){
-		var artistId = dataList[i].id;
-		var artistName = dataList[i].name;
-		var artistAbt = dataList[i].about;
-		var artistImg = dataList[i].img;
+		var id = dataList[i].id;
+		var name = dataList[i].name;
+		var abt = dataList[i].about;
+		var img = dataList[i].img;
 		var dataTag = i;
-		savedArtist(artistId, artistName, artistAbt, artistImg, delBtn, x, dataTag);
+		let artist = {id, name, abt, img, del, main, dataTag};
+		savedArtist(artist);
 
 	}
 	

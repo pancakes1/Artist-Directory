@@ -89,10 +89,6 @@ console.log(dataList);
 	
 }
 
-/*var retrieveData = window.localStorage.getItem("dataKey");
-console.log(JSON.parse(retrieveData));*/
-
-
 window.addEventListener('load',reload);	
 function reload() {
 	var dataList= window.localStorage.getItem("dataKey");
@@ -111,10 +107,30 @@ function reload() {
 		var dataTag = i;
 		let artist = {id, name, abt, img, del, main, dataTag};
 		savedArtist(artist);
-
 	}
 	
 }
 
+const searchBtn = () =>{
+	var userSearch = document.getElementById('userSearch').value;
+	var dataList = window.localStorage.getItem('dataKey');
+	if (dataList == null){
+		dataList = [];
+	}else{
+		dataList = JSON.parse(dataList);}
+		
+	for (var i = 0; i<dataList.length; i++){
+		var name = dataList[i].name;
+		var id = dataList[i].id;
+		let main = document.getElementById(id);
+		var included = name.includes(userSearch);
 
+		if (included == false){
+			main.style.display = "none";
+		}
+		else{
+			main.style.display = "block";
+		}
 
+	}
+}

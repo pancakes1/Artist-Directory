@@ -10,7 +10,7 @@
 }
 
 #mainBox {
-	width: 500px;
+	width: 650px;
 	height: 120px;
 	border: 1px solid #ada5a5;
 	padding: 30px;	
@@ -31,19 +31,19 @@
 }
 
 
-#add_artist_button{
+.add_artist_button{
 	background-color:#D0D0D0;
 	display:inline-block;
 	color:#292929;
 	font-size: 15px;
 	padding:7px 15px;
-	width: 15%;
+	width: 10%;
 	height: auto;
 	text-align:center;
 	margin-left:10px;
 	cursor:pointer;
 }
-#add_artist_button:hover{
+.add_artist_button:hover{
 	background-color:#A7A5A5;
 }
 .input_container{

@@ -10,7 +10,7 @@
 }
 
 #mainBox {
-	width: 650px;
+	width: 600px;
 	height: 120px;
 	border: 1px solid #ada5a5;
 	padding: 30px;	
@@ -37,10 +37,10 @@
 	color:#292929;
 	font-size: 15px;
 	padding:7px 15px;
-	width: 10%;
+	width: 12%;
 	height: auto;
 	text-align:center;
-	margin-left:10px;
+	margin-left:5px;
 	cursor:pointer;
 }
 .add_artist_button:hover{

@@ -29,7 +29,7 @@ const savedArtist = (artist) =>{
 		
 		let artAbt = document.createElement('p');
 		artAbt.classList.add('description');
-		var textAbt = document.createTextNode(artist.abt);
+		var textAbt = document.createTextNode(artist.about);
 		artAbt.appendChild(textAbt);
 		
 		let del = document.createElement('a');
@@ -102,10 +102,10 @@ function reload() {
 	for (var i = 0; i<dataList.length; i++){
 		var id = dataList[i].id;
 		var name = dataList[i].name;
-		var abt = dataList[i].about;
+		var about = dataList[i].about;
 		var img = dataList[i].img;
 		var dataTag = i;
-		let artist = {id, name, abt, img, del, main, dataTag};
+		let artist = {id, name, about, img, del, main, dataTag};
 		savedArtist(artist);
 	}
 	
@@ -113,23 +113,27 @@ function reload() {
 
 const searchBtn = () =>{
 	var userSearch = document.getElementById('userSearch').value;
-	var dataList = window.localStorage.getItem('dataKey');
+	var dataList= window.localStorage.getItem("dataKey");
+	let del = document.getElementById('delButton').value;
+	let main = document.getElementById('artistBox');
 	if (dataList == null){
 		dataList = [];
 	}else{
-		dataList = JSON.parse(dataList);}
-		
+		dataList = JSON.parse(dataList);
+	}
 	for (var i = 0; i<dataList.length; i++){
-		var name = dataList[i].name;
 		var id = dataList[i].id;
-		let main = document.getElementById(id);
+		var name = dataList[i].name;
+		var about = dataList[i].about;
+		var img = dataList[i].img;
+		var dataTag = i;
+		let mains = document.getElementById(id);
 		var included = name.includes(userSearch);
-
 		if (included == false){
-			main.style.display = "none";
+			mains.style.display = "none";
 		}
 		else{
-			main.style.display = "block";
+			mains.style.display = "block";
 		}
 
 	}
